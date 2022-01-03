@@ -10,8 +10,8 @@ public class TicketBooking {
 	
 	@Id
 	private int ticketBookingId;
-//	private Customer customer;
-//	private Activity activity;
+	private Customer customer;
+	private Activity activity;
 	private LocalDateTime dateTime;
 	private float bill;
 	public int getTicketBookingId() {
@@ -20,18 +20,18 @@ public class TicketBooking {
 	public void setTicketBookingId(int ticketBookingId) {
 		this.ticketBookingId = ticketBookingId;
 	}
-//	public Customer getCustomer() {
-//		return customer;
-//	}
-//	public void setCustomer(Customer customer) {
-//		this.customer = customer;
-//	}
-//	public Activity getActivity() {
-//		return activity;
-//	}
-//	public void setActivity(Activity activity) {
-//		this.activity = activity;
-//	}
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	public Activity getActivity() {
+		return activity;
+	}
+	public void setActivity(Activity activity) {
+		this.activity = activity;
+	}
 	public LocalDateTime getDateTime() {
 		return dateTime;
 	}
