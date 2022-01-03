@@ -14,11 +14,6 @@ public class TicketBooking {
 //	private Activity activity;
 	private LocalDateTime dateTime;
 	private float bill;
-<<<<<<< HEAD
-private int abc;
-=======
-	private int a;
->>>>>>> 1f8845589cee9a54fbc8cb84699968a1b5282173
 	public int getTicketBookingId() {
 		return ticketBookingId;
 	}
