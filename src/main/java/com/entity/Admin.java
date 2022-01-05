@@ -4,9 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Admin extends AbstractUser{
+public class Admin extends User{
 	
-	@Id
+//	@Id
 	private int adminId;
 
 	public int getAdminId() {

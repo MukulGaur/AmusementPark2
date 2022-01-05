@@ -2,11 +2,15 @@ package com.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 @Entity
-public class AbstractUser {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public class User {
 	
 	@Id
+	private int userId;
 	private String username;
 	private String firsrtName;
 	private String lastName;

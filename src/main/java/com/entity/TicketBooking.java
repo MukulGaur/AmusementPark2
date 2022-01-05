@@ -12,7 +12,7 @@ public class TicketBooking {
 	private int ticketBookingId;
 	private Customer customer;
 	private Activity activity;
-	private LocalDateTime dateTime;
+	private String dateTime;
 	private float bill;
 	public int getTicketBookingId() {
 		return ticketBookingId;
@@ -32,10 +32,10 @@ public class TicketBooking {
 	public void setActivity(Activity activity) {
 		this.activity = activity;
 	}
-	public LocalDateTime getDateTime() {
+	public String getDateTime() {
 		return dateTime;
 	}
-	public void setDateTime(LocalDateTime dateTime) {
+	public void String(String dateTime) {
 		this.dateTime = dateTime;
 	}
 	public float getBill() {
