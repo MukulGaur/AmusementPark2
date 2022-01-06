@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.entity.Admin;
 import com.entity.TicketBooking;
+import com.exception.AdminNotFoundException;
 import com.repository.AdminRepository;
 import com.service.Iface.AdminServiceIface;
 
@@ -29,8 +30,8 @@ public class AdminService implements AdminServiceIface{
 
 //	Update Admin record using ID
 	@Override
-	public Admin updateAdmin(Admin admin, int id) {
-		Admin existingAdmin = adminRepo.findById(id).orElseThrow();
+	public Admin updateAdmin(Admin admin, int id) throws AdminNotFoundException {
+		Admin existingAdmin = adminRepo.findById(id).orElseThrow(() -> new AdminNotFoundException("Not Found!"));
 		
 		existingAdmin.setFirsrtName(admin.getFirsrtName());
 		existingAdmin.setLastName(admin.getLastName());
@@ -45,8 +46,8 @@ public class AdminService implements AdminServiceIface{
 
 //	Delete Admin record using ID
 	@Override
-	public String deleteAdmin(int adminId) {
-		adminRepo.findById(adminId).orElseThrow();
+	public String deleteAdmin(int adminId) throws AdminNotFoundException {
+		adminRepo.findById(adminId).orElseThrow(() -> new AdminNotFoundException("Not Found!"));
 		adminRepo.deleteById(adminId);
 		
 		return "deleted";

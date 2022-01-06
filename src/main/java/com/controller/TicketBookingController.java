@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.entity.TicketBooking;
+import com.exception.TicketBookingNotFoundException;
 import com.service.TicketBookingService;
 
 @RestController
@@ -36,18 +37,15 @@ public class TicketBookingController {
 	
 //	Update ticket details
 	@PutMapping("/updateTicketDetails/{ticketId}")
-	public ResponseEntity<TicketBooking> updateTicketBooking(@RequestBody TicketBooking ticket, @PathVariable int ticketId){
+	public ResponseEntity<TicketBooking> updateTicketBooking(@RequestBody TicketBooking ticket, @PathVariable int ticketId) throws TicketBookingNotFoundException{
 		return new ResponseEntity<TicketBooking>(ticketBookingService.updateTicketBooking(ticket, ticketId), HttpStatus.OK);
 	}
 	
 //	Delete ticket details
 	@DeleteMapping("/deleteTicketDetails/{ticketId}")
-	public ResponseEntity<String> deleteTicketBooking(@PathVariable int ticketId){
+	public ResponseEntity<String> deleteTicketBooking(@PathVariable int ticketId) throws TicketBookingNotFoundException{
 		ticketBookingService.deleteTicketBooking(ticketId);
 		return new ResponseEntity<String>("Ticket record deleted !", HttpStatus.OK);
 	}
-	
-//	public List<TicketBooking> viewAllTicketsCustomer(int customerId);
-//	public TicketBooking calculateBill(int customerId);
 
 }

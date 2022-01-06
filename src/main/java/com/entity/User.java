@@ -1,6 +1,7 @@
 package com.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -10,6 +11,7 @@ import javax.persistence.InheritanceType;
 public class User {
 	
 	@Id
+	@GeneratedValue
 	private int userId;
 	private String username;
 	private String firsrtName;

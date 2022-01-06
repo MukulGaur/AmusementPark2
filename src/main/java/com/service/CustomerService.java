@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.entity.Customer;
+import com.exception.CustomerNotFoundException;
 import com.repository.CustomerRepository;
 import com.service.Iface.CustomerServiceIface;
 
@@ -28,8 +29,8 @@ public class CustomerService implements CustomerServiceIface{
 
 //	Update Customer record using ID
 	@Override
-	public Customer updateCustomer(Customer customer, int id) {
-		Customer existingCustomer = customerRepo.findById(id).orElseThrow();
+	public Customer updateCustomer(Customer customer, int id) throws CustomerNotFoundException {
+		Customer existingCustomer = customerRepo.findById(id).orElseThrow(() -> new CustomerNotFoundException("Not found!"));
 		
 		existingCustomer.setFirsrtName(customer.getFirsrtName());
 		existingCustomer.setLastName(customer.getLastName());
@@ -44,8 +45,8 @@ public class CustomerService implements CustomerServiceIface{
 
 //	Delete Customer records using ID
 	@Override
-	public String deleteCustomer(Customer customer, int id) {
-		customerRepo.findById(id).orElseThrow();
+	public String deleteCustomer(Customer customer, int id) throws CustomerNotFoundException {
+		customerRepo.findById(id).orElseThrow(() -> new CustomerNotFoundException("Not found!"));
 		customerRepo.deleteById(id);
 		
 		return "Deleted";
@@ -59,22 +60,8 @@ public class CustomerService implements CustomerServiceIface{
 
 //	View all Customer records using ID
 	@Override
-	public Customer viewCustomer(int customerId) {
-		return customerRepo.findById(customerId).orElseThrow();
-	}
-
-//	View Customer records using customer-name
-	@Override
-	public List<Customer> viewCustomerListByActivityName(String activityName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-//	View Customer records by dates
-	@Override
-	public List<Customer> viewCustomerListByDate(String date) {
-		// TODO Auto-generated method stub
-		return null;
+	public Customer viewCustomer(int customerId) throws CustomerNotFoundException {
+		return customerRepo.findById(customerId).orElseThrow(() -> new CustomerNotFoundException("Not found!"));
 	}
 
 }

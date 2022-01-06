@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.entity.Customer;
+import com.exception.CustomerNotFoundException;
 import com.service.CustomerService;
 
 @RestController
@@ -31,19 +32,19 @@ public class CustomerController {
 	
 //	Insert customer record
 	@PostMapping("/insertCustomer")
-	public ResponseEntity<Customer> saveStudent(@RequestBody Customer customer){
+	public ResponseEntity<Customer> insertCustomer(@RequestBody Customer customer){
 		return new ResponseEntity<Customer>(customerService.insertCustomer(customer), HttpStatus.CREATED);
 	}
 	
 //	Update customer record
-	@PutMapping("updateCustomer")
-	public  ResponseEntity<Customer> updateStudent(@RequestBody Customer customer, @PathVariable int customerIdd){
-		return new ResponseEntity<Customer>(customerService.updateCustomer(customer, customerIdd), HttpStatus.OK);
+	@PutMapping("updateCustomer/{customerId}")
+	public  ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer, @PathVariable int customerId) throws CustomerNotFoundException{
+		return new ResponseEntity<Customer>(customerService.updateCustomer(customer, customerId), HttpStatus.OK);
 	}
 	
 //	Delete customer record
 	@DeleteMapping("/deleteCustomerById/{customerId}")
-	public ResponseEntity<String> deleteStudent(@RequestBody Customer customer , @PathVariable int customerId){
+	public ResponseEntity<String> deleteCustomer(@RequestBody Customer customer , @PathVariable int customerId) throws CustomerNotFoundException{
 			
 			customerService.deleteCustomer(customer, customerId);
 			
@@ -58,7 +59,7 @@ public class CustomerController {
 	
 //	Get customer by Id
 	@GetMapping("/viewCustomerById/{customerId}")
-	public ResponseEntity<Customer> viewCustomerById(@PathVariable int customerId){
+	public ResponseEntity<Customer> viewCustomerById(@PathVariable int customerId) throws CustomerNotFoundException{
 		return new ResponseEntity<Customer>(customerService.viewCustomer(customerId), HttpStatus.OK);
 	}
 	

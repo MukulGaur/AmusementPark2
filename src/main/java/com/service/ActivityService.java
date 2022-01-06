@@ -1,11 +1,13 @@
 package com.service;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.entity.Activity;
+import com.exception.ActivityNotFoundException;
 import com.repository.ActivityRepository;
 import com.service.Iface.ActivityServiceIface;
 
@@ -28,9 +30,9 @@ public class ActivityService implements ActivityServiceIface{
 
 //	Update Activity record by id
 	@Override
-	public Activity updateActivity(Activity activity, int id) {//didn't use supplier object
+	public Activity updateActivity(Activity activity, int id) throws ActivityNotFoundException {//didn't use supplier object
 		
-		Activity existingActivity = activityRepo.findById(id).orElseThrow();
+		Activity existingActivity = activityRepo.findById(id).orElseThrow(() -> new ActivityNotFoundException("Not found!"));
 //		didn't give id
 		existingActivity.setCharges(existingActivity.getCharges());
 		existingActivity.setDescription(existingActivity.getDescription());
@@ -42,9 +44,9 @@ public class ActivityService implements ActivityServiceIface{
 
 //	Delete Activity record by id
 	@Override
-	public String deleteActivityById(int id) { //didn't use supplier object
+	public String deleteActivityById(int id) throws ActivityNotFoundException { //didn't use supplier object
 		
-		activityRepo.findById(id).orElseThrow();
+		activityRepo.findById(id).orElseThrow(() -> new ActivityNotFoundException("Not found!"));
 		
 		activityRepo.deleteById(id);
 		
@@ -64,13 +66,6 @@ public class ActivityService implements ActivityServiceIface{
 		List<Activity> activityList = activityRepo.viewActivitiesOfCharges(charges);
 		int count = activityList.size();
 		return count;
-	}
-
-//	Delete Activity by Activity Object
-	@Override
-	public String deleteActivity(Activity activity) {
-		activityRepo.delete(activity);
-		return "Activity deleted !";
 	}
 
 	@Override

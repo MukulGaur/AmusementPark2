@@ -59,13 +59,6 @@ public class ActivityController {
 		return new ResponseEntity<Activity>(activityService.updateActivity(activity, id), HttpStatus.OK);
 	}
 	
-//	Delete activity
-	@DeleteMapping("/deleteActivity")
-	public ResponseEntity<String> deleteActivity(@RequestBody Activity activity) {
-		activityService.deleteActivity(activity);
-		return new ResponseEntity<String>("Activity deleted !", HttpStatus.OK);
-	}
-	
 //	Delete activity by Id
 	@DeleteMapping("/deleteActivityById/{activityId}")
 	public ResponseEntity<String> deleteActivityById(@PathVariable int activityId) throws Throwable{

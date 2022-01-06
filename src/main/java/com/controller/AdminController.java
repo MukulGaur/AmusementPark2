@@ -42,7 +42,7 @@ public class AdminController {
 	}
 	
 //	Delete admin
-	@DeleteMapping("/deleteAdminById/{adminId")
+	@DeleteMapping("/deleteAdminById/{adminId}")
 	public ResponseEntity<String> deleteAdminById(@PathVariable int adminId){
 		return new ResponseEntity<String>("Deleted Admin Successfully", HttpStatus.OK);
 	}
