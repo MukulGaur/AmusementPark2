@@ -5,6 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -13,12 +18,27 @@ public class User {
 	@Id
 	@GeneratedValue
 	private int userId;
+	
+	@NotEmpty
 	private String username;
+	@NotEmpty
 	private String firsrtName;
+	@NotEmpty
 	private String lastName;
+	@NotEmpty
+	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$")
 	private String password;
+	
+	@Min(1)
+	@Max(10)
+	@NotEmpty
 	private String mobileNumber;
+	
+	@Email
+	@NotEmpty
 	private String email;
+	
+	
 	public String getUsername() {
 		return username;
 	}

@@ -14,18 +14,18 @@ public class Customer extends User{
 //	@Id
 	private int customerId;
 	
-	@OneToMany
-	private List<TicketBooking> ticket;
+//	@OneToMany
+//	private List<TicketBooking> ticket;
 	
 	
 
-	public List<TicketBooking> getTicket() {
-		return ticket;
-	}
-
-	public void setTicket(List<TicketBooking> ticket) {
-		this.ticket = ticket;
-	}
+//	public List<TicketBooking> getTicket() {
+//		return ticket;
+//	}
+//
+//	public void setTicket(List<TicketBooking> ticket) {
+//		this.ticket = ticket;
+//	}
 
 	public int getCustomerId() {
 		return customerId;

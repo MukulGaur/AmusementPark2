@@ -58,6 +58,11 @@ public class AdminService implements AdminServiceIface{
 		return adminRepo.findAll();
 	}
 
+	@Override
+	public Admin findAdminById(int id) throws AdminNotFoundException {
+		return adminRepo.findById(id).orElseThrow(() -> new AdminNotFoundException("Not found!"));
+	}
+
 //	View all Activities for the given Customer ID
 //	@Override
 //	public List<TicketBooking> getAllActivities(int customerId) {

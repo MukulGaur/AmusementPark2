@@ -12,5 +12,6 @@ public interface AdminServiceIface {
 	public Admin updateAdmin(Admin admin, int id) throws AdminNotFoundException;
 	public String deleteAdmin(int adminId) throws AdminNotFoundException;
 	public List<Admin> viewAdmins();
+	public Admin findAdminById(int id) throws AdminNotFoundException;
 
 }

@@ -22,6 +22,7 @@ public class TicketBooking {
 	private int ticketBookingId;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "userId", referencedColumnName = "userId")
 	private Customer customer;
 	
 	
